@@ -19,4 +19,6 @@ Vit-TransUnet-etc.
 
   如模型细节图（左）所示，首先输入一张224×224×3的RBG彩色图片，通过Embedding层，具体来说，是由一个16*16大小的卷积核、步距为16的卷积层，得到14*14*768的特征图，然后在高度和宽度（前两个维度）打平，得到196*768的特征向量。然后Concat一个Class token变成尺寸197*768，然后加上Position Embedding，因为尺寸完全相同，所以这里可以理解为数值上的相加，此后经过一个Dropout层，经过重复L次的TransFormer Encoder层，然后跟一个LayerNorm，提取Class token的输出（使用切片操作，将Class信息单独抽出来），紧接着通过MLP Head层得到最终的输出。Pre-Logits是由全连接层+tanh激活函数构成，然后通过一个全连接层得到输出。
 
-2. XXX ==========================================================
+2. TransUnet ==========================================================
+
+![transUnet](https://user-images.githubusercontent.com/52816016/191650683-5360544b-6051-422d-b0e6-7b8259aa24c8.jpg)
